@@ -19,4 +19,5 @@ class MyPageViewModel : ViewModel() {
 
     private val _followingCount = MutableLiveData(777)
     val followingCount: LiveData<Int> get() = _followingCount
+
 }

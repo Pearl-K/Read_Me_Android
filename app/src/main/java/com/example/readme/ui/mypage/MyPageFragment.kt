@@ -13,7 +13,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class MyPageFragment : BaseFragment<FragmentMypageBinding>(R.layout.fragment_mypage) {
 
-    private var _binding: FragmentMypageBinding? = null
     private val information = arrayListOf("내 쇼츠", "찜 쇼츠", "읽은 책")
 
     private val viewModel: MyPageViewModel by viewModels()
@@ -23,28 +22,44 @@ class MyPageFragment : BaseFragment<FragmentMypageBinding>(R.layout.fragment_myp
         (activity as MainActivity).ShowMyPage()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentMypageBinding.inflate(inflater, container, false)
+    override fun initDataBinding() {
+        super.initDataBinding()
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+    }
 
-        // Set up the ViewPager with the sections adapter.
+    override fun initAfterBinding() {
+        super.initAfterBinding()
+
+        // ViewPager2와 TabLayoutMediator 설정
         val adapter = ViewPagerAdapter(this)
         binding.viewPager.adapter = adapter
 
-        // Connect TabLayout and ViewPager2 with icons
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            tab.text = information[position]
+        }.attach()
+    }
+
+    // 이전 방식
+    /*override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+        // 여기서 super.onCreateView 호출로 _binding을 설정
+        val view = super.onCreateView(inflater, container, savedInstanceState)
+
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        val adapter = ViewPagerAdapter(this)
+        binding.viewPager.adapter = adapter
+
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = information[position]
         }.attach()
 
         return binding.root
-    }
+    }*/
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }
