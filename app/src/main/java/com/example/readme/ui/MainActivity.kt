@@ -10,7 +10,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.android.identity.android.legacy.Utility
+//import com.android.identity.android.legacy.Utility
 import com.example.readme.R
 import com.example.readme.databinding.ActivityMainBinding
 import com.example.readme.ui.community.CommunityFragment
@@ -79,6 +79,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnFilter.visibility = View.VISIBLE
         binding.btnSetting.visibility = View.GONE
         binding.btnBack.visibility = View.GONE
+        binding.search.visibility = View.GONE
     }
 
     fun ShowSearch(){

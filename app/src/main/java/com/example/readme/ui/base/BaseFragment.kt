@@ -49,4 +49,12 @@ abstract class BaseFragment<B: ViewDataBinding>(@LayoutRes private val layoutRes
         initDataBinding()
         initAfterBinding()
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        // binding 해제
+        if (::binding.isInitialized) {
+            binding.unbind()
+        }
+    }
 }
