@@ -66,8 +66,9 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
     implementation ("me.relex:circleindicator:2.1.6")
-
-
+    
+    //리사이클러 뷰 설정
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
 
     //안드로이드 공식 문서 : ViewModel 최신 dependencies
 
