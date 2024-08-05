@@ -13,8 +13,15 @@ interface ReadmeServerService {
     @GET("yourEndpoint")
     fun getData(): Call<ReadmeResponse>
 
+
+    @GET("/users/my")
+    suspend fun getProfile(): ProfileResponse
+
+    @GET("/users/my/shorts")
+    suspend fun getMyShorts(): ProfileShortsResponse
+
     companion object {
         //나중에 서버 URL 추가
-        const val BASE_URL = "https://your-custom-server.com/api/"
+        const val BASE_URL = "https://dev.umcreadme11.shop/"
     }
 }

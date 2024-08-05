@@ -10,7 +10,7 @@ object RetrofitClient {
 
     private var aladdinRetrofit: Retrofit? = null
     private var kakaoRetrofit: Retrofit? = null
-    private var customRetrofit: Retrofit? = null
+    private var ReadmeRetrofit: Retrofit? = null
 
     // 알라딘 API Retrofit 객체 생성
     fun getAladdinService(): AladdinService {
@@ -36,12 +36,12 @@ object RetrofitClient {
 
     // Readme 서버 API Retrofit 객체 생성
     fun getReadmeServerService(): ReadmeServerService {
-        if (customRetrofit == null) {
-            customRetrofit = Retrofit.Builder()
+        if (ReadmeRetrofit == null) {
+            ReadmeRetrofit = Retrofit.Builder()
                 .baseUrl(ReadmeServerService.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }
-        return customRetrofit!!.create(ReadmeServerService::class.java)
+        return ReadmeRetrofit!!.create(ReadmeServerService::class.java)
     }
 }
