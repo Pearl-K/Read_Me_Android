@@ -1,13 +1,19 @@
 package com.example.readme.ui.mypage
 
+import MyPageViewModelFactory
 import android.os.Bundle
+import android.text.TextUtils.replace
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.commit
 import com.example.readme.R
 import com.example.readme.databinding.FragmentMypageBinding
 import androidx.fragment.app.viewModels
+import com.example.readme.data.remote.ProfileResponse
+import com.example.readme.data.remote.ReadmeServerService
 import com.example.readme.ui.MainActivity
+import com.example.readme.utils.RetrofitClient
 import com.example.whashow.base.BaseFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -15,7 +21,13 @@ class MyPageFragment : BaseFragment<FragmentMypageBinding>(R.layout.fragment_myp
 
     private val information = arrayListOf("내 쇼츠", "찜 쇼츠", "읽은 책")
 
-    private val viewModel: MyPageViewModel by viewModels()
+    private val token: String = "your_access_token" // 실제 토큰으로 대체
+    private val apiService: ReadmeServerService by lazy {
+        RetrofitClient.apiService
+    }
+    private val viewModel: MyPageViewModel by viewModels {
+        MyPageViewModelFactory(token, apiService)
+    }
 
     override fun initStartView() {
         super.initStartView()
@@ -38,6 +50,13 @@ class MyPageFragment : BaseFragment<FragmentMypageBinding>(R.layout.fragment_myp
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = information[position]
         }.attach()
+
+        // 프로필 정보 가져오기
+        viewModel.getProfile(token).observe(viewLifecycleOwner) { profileResponse ->
+            // 프로필 정보를 UI에 업데이트하기
+        }
+
+
     }
 
     // 이전 방식

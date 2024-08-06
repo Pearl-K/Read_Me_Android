@@ -10,12 +10,14 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 //import com.android.identity.android.legacy.Utility
 import com.example.readme.R
 import com.example.readme.databinding.ActivityMainBinding
 import com.example.readme.ui.community.CommunityFragment
 import com.example.readme.ui.home.HomeFragment
 import com.example.readme.ui.mypage.MyPageFragment
+import com.example.readme.ui.mypage.SettingFragment
 import com.example.readme.ui.search.SearchFragment
 class MainActivity : AppCompatActivity() {
 
@@ -32,6 +34,13 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnBack.setOnClickListener {
             onBackPressed()
+        }
+
+        binding.btnSetting.setOnClickListener {
+            supportFragmentManager.commit {
+                replace(R.id.nav_host_fragment, SettingFragment())
+                addToBackStack(null)
+            }
         }
 
     }

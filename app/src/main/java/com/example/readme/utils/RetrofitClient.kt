@@ -44,4 +44,15 @@ object RetrofitClient {
         }
         return ReadmeRetrofit!!.create(ReadmeServerService::class.java)
     }
+
+    val retrofit: Retrofit by lazy {
+        Retrofit.Builder()
+            .baseUrl(ReadmeServerService.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    val apiService: ReadmeServerService by lazy {
+        retrofit.create(ReadmeServerService::class.java)
+    }
 }
