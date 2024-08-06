@@ -22,6 +22,6 @@ interface ReadmeServerService {
 
     companion object {
         //나중에 서버 URL 추가
-        const val BASE_URL = "https://dev.umcreadme11.shop/"
+        const val BASE_URL ="https://api.umcreadme11.shop/ "
     }
 }
