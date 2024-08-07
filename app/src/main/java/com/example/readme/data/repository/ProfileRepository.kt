@@ -10,9 +10,5 @@ import kotlinx.coroutines.withContext
 class ProfileRepository {
     private val api = getReadmeServerService()
 
-    suspend fun getProfile(): ProfileResponse {
-        return withContext(Dispatchers.IO) {
-            api.getProfile()
-        }
-    }
+
 }

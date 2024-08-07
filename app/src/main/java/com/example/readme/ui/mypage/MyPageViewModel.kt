@@ -21,6 +21,9 @@ class MyPageViewModel(private val token: String, private val apiService: ReadmeS
     private val _profileBio = MutableLiveData("This is the bio")
     val profileBio: LiveData<String> get() = _profileBio
 
+    private val _readCount = MutableLiveData(17)
+    val readCount: LiveData<Int> get() = _readCount
+
     private val _followersCount = MutableLiveData(700)
     val followersCount: LiveData<Int> get() = _followersCount
 
