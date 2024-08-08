@@ -1,5 +1,6 @@
 package com.example.readme.data.remote
 
+import com.example.readme.ui.community.Chat
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -35,6 +36,12 @@ interface ReadmeServerService {
     suspend fun getShorts(
         @Path("userId") userId: String
     ): ProfileShortsResponse
+
+    @POST("communities/{communityId}/messages")
+    fun postMessage(@Path("communityId") communityId: String, @Body chat: Chat): Call<Chat>
+
+    @GET("communities/{communityId}/messages")
+    fun getMessages(@Path("communityId") communityId: String): Call<List<Chat>>
 
     companion object {
 

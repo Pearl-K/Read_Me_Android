@@ -58,6 +58,10 @@ android {
 dependencies {
 
     //추가 impl
+
+    // Google Play Services 및 추가 종속성
+    implementation("com.google.android.gms:play-services-maps:18.0.0")
+
     //version 설정: 편의성을 위해 이전에 사용했던 버전으로 맞췄습니다.
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
