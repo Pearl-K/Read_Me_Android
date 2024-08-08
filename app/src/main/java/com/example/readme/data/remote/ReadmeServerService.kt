@@ -5,6 +5,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 //임시 ApiService
 interface ReadmeServerService {
@@ -16,12 +17,24 @@ interface ReadmeServerService {
 
 
     @GET("/users/my")
-    suspend fun getProfile(
+    suspend fun getMyProfile(
         @Header("Authorization") token: String
     ): ProfileResponse
 
     @GET("/users/my/shorts")
     suspend fun getMyShorts(): ProfileShortsResponse
+
+    // userId를 경로 매개변수로 받아서 요청
+    @GET("/users/{userId}")
+    suspend fun getProfile(
+        //@Header("Authorization") token: String,
+        @Path("userId") userId: String
+    ): ProfileResponse
+
+    @GET("/users/{userId}/shorts")
+    suspend fun getShorts(
+        @Path("userId") userId: String
+    ): ProfileShortsResponse
 
     companion object {
 
