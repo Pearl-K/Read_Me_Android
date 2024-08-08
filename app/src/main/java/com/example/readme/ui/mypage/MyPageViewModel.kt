@@ -33,8 +33,8 @@ class MyPageViewModel(private val token: String, private val apiService: ReadmeS
     private val _profileImg = MutableLiveData<String>()
     val profileImg: LiveData<String> get() = _profileImg
 
-    fun getProfile(token: String) = liveData(Dispatchers.IO) {
-        val response = apiService.getProfile("Bearer $token")
+    fun getMyProfile(token: String) = liveData(Dispatchers.IO) {
+        val response = apiService.getMyProfile("Bearer $token")
         emit(response)
     }
 }

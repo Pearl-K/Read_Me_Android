@@ -12,16 +12,16 @@ import com.example.readme.utils.RetrofitClient
 import com.example.whashow.base.BaseFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
-class UserProfileFragment : BaseFragment<FragmentUserProfileBinding>(R.layout.fragment_userprofile) {
+class UserProfileFragment : BaseFragment<FragmentUserprofileBinding>(R.layout.fragment_userprofile) {
 
     private val information = arrayListOf("내 쇼츠", "찜 쇼츠", "읽은 책")
 
-    private val token: String = "your_access_token" // 실제 토큰으로 대체
+    private val userId: String = "userId" // 실제 토큰으로 대체
     private val apiService: ReadmeServerService by lazy {
         RetrofitClient.apiService
     }
     private val viewModel: UserProfileViewModel by viewModels {
-        UserProfileViewModelFactory(token, apiService)
+        UserProfileViewModelFactory(userId, apiService)
     }
 
     override fun initStartView() {
@@ -51,7 +51,7 @@ class UserProfileFragment : BaseFragment<FragmentUserProfileBinding>(R.layout.fr
         }.attach()
 
         // 프로필 정보 가져오기
-        viewModel.getProfile(token).observe(viewLifecycleOwner) { profileResponse ->
+        viewModel.getProfile(userId).observe(viewLifecycleOwner) { profileResponse ->
             // 프로필 정보를 UI에 업데이트하기
         }
 

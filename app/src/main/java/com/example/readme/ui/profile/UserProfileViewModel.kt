@@ -8,7 +8,7 @@ import com.example.readme.data.remote.ProfileResponse
 import com.example.readme.data.remote.ReadmeServerService
 import kotlinx.coroutines.launch
 
-class UserProfileViewModel(private val token: String, private val apiService: ReadmeServerService) : ViewModel() {
+class UserProfileViewModel(private val userId: String, private val apiService: ReadmeServerService) : ViewModel() {
 
     private val _profileName = MutableLiveData<String>()
     val profileName: LiveData<String> get() = _profileName
@@ -28,12 +28,12 @@ class UserProfileViewModel(private val token: String, private val apiService: Re
     private val _followingCount = MutableLiveData<Int>()
     val followingCount: LiveData<Int> get() = _followingCount
 
-    fun getProfile(token: String): LiveData<ProfileResponse> {
+    fun getProfile(userId: String): LiveData<ProfileResponse> {
         val result = MutableLiveData<ProfileResponse>()
         viewModelScope.launch {
             try {
-                val response = apiService.getProfile(token)
-                if (response.isSuccessful) {
+                val response = apiService.getProfile(userId)
+                /*if (response.isSuccessful) {
                     response.body()?.let {
                         _profileName.value = it.name
                         _profileId.value = it.id
@@ -43,7 +43,7 @@ class UserProfileViewModel(private val token: String, private val apiService: Re
                         _followingCount.value = it.followingCount
                         result.value = it
                     }
-                }
+                }*/
             } catch (e: Exception) {
                 // Handle error
             }

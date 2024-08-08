@@ -56,7 +56,7 @@ class MyPageFragment : BaseFragment<FragmentMypageBinding>(R.layout.fragment_myp
         }.attach()
 
         // 프로필 정보 가져오기
-        viewModel.getProfile(token).observe(viewLifecycleOwner) { profileResponse ->
+        viewModel.getMyProfile(token).observe(viewLifecycleOwner) { profileResponse ->
             // 프로필 정보를 UI에 업데이트하기
         }
 
