@@ -70,6 +70,10 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
     implementation ("me.relex:circleindicator:2.1.6")
+
+    //Glide
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
     
     //리사이클러 뷰 설정
     implementation("androidx.recyclerview:recyclerview:1.3.2")

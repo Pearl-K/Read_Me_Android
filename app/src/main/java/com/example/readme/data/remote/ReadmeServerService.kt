@@ -1,6 +1,8 @@
 package com.example.readme.data.remote
 
+import com.example.readme.data.entities.User
 import com.example.readme.ui.community.Chat
+import com.google.android.gms.common.api.Response
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -20,7 +22,7 @@ interface ReadmeServerService {
     @GET("/users/my")
     suspend fun getMyProfile(
         @Header("Authorization") token: String
-    ): ProfileResponse
+    ): Call<ProfileResponse>
 
     @GET("/users/my/shorts")
     suspend fun getMyShorts(): ProfileShortsResponse
@@ -28,9 +30,9 @@ interface ReadmeServerService {
     // userId를 경로 매개변수로 받아서 요청
     @GET("/users/{userId}")
     suspend fun getProfile(
-        //@Header("Authorization") token: String,
-        @Path("userId") userId: String
+        @Path("userId") userId: Int
     ): ProfileResponse
+
 
     @GET("/users/{userId}/shorts")
     suspend fun getShorts(

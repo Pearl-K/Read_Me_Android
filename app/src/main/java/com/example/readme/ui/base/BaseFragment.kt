@@ -1,4 +1,4 @@
-package com.example.whashow.base
+package com.example.readme.ui.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

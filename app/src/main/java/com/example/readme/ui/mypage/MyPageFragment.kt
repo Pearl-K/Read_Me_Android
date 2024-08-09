@@ -1,20 +1,13 @@
 package com.example.readme.ui.mypage
 
 import MyPageViewModelFactory
-import android.os.Bundle
-import android.text.TextUtils.replace
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.commit
 import com.example.readme.R
 import com.example.readme.databinding.FragmentMypageBinding
 import androidx.fragment.app.viewModels
-import com.example.readme.data.remote.ProfileResponse
 import com.example.readme.data.remote.ReadmeServerService
 import com.example.readme.ui.MainActivity
 import com.example.readme.utils.RetrofitClient
-import com.example.whashow.base.BaseFragment
+import com.example.readme.ui.base.BaseFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MyPageFragment : BaseFragment<FragmentMypageBinding>(R.layout.fragment_mypage) {

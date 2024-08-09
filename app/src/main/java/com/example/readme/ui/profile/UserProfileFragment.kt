@@ -1,22 +1,23 @@
 package com.example.readme.ui.profile
 
-import MyPageViewModelFactory
+import android.util.Log
+import androidx.databinding.BindingAdapter
 import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
 import com.example.readme.R
 import com.example.readme.databinding.FragmentUserprofileBinding
-import androidx.fragment.app.viewModels
 import com.example.readme.data.remote.ReadmeServerService
 import com.example.readme.ui.MainActivity
+import com.example.readme.ui.base.BaseFragment
 import com.example.readme.ui.mypage.ViewPagerAdapter
 import com.example.readme.utils.RetrofitClient
-import com.example.whashow.base.BaseFragment
 import com.google.android.material.tabs.TabLayoutMediator
+import androidx.lifecycle.observe
+
 
 class UserProfileFragment : BaseFragment<FragmentUserprofileBinding>(R.layout.fragment_userprofile) {
 
-    private val information = arrayListOf("내 쇼츠", "찜 쇼츠", "읽은 책")
-
-    private val userId: String = "userId" // 실제 토큰으로 대체
+    private val userId: Int = 3 // 테스트용
     private val apiService: ReadmeServerService by lazy {
         RetrofitClient.apiService
     }
@@ -51,8 +52,29 @@ class UserProfileFragment : BaseFragment<FragmentUserprofileBinding>(R.layout.fr
         }.attach()
 
         // 프로필 정보 가져오기
-        viewModel.getProfile(userId).observe(viewLifecycleOwner) { profileResponse ->
-            // 프로필 정보를 UI에 업데이트하기
+        viewModel.getProfile().observe(viewLifecycleOwner) { profileResponse ->
+            if (profileResponse != null) {
+                // 정상적인 응답 처리
+                profileResponse?.let {
+
+                    // 서버 응답 로그에 출력
+                    Log.d("UserProfileFragment", "Profile Response: $profileResponse")
+
+                    // 프로필 정보를 UI에 업데이트
+                    binding.profileName.text = it.result.nickname
+                    binding.profileId.text = "@${it.result.account}"
+                    binding.profileBio.text = it.result.comment ?: "No bio available"
+                    binding.followersCount.text = "${it.result.followerNum}"
+                    binding.followingCount.text = "${it.result.followingNum}"
+
+                    // 이미지 로딩은 Glide 또는 Picasso 등을 사용해 비동기로 처리
+                    Glide.with(this)
+                        .load(it.result.profileImg)
+                        .into(binding.profileImage)
+                }
+            } else {
+                Log.e("UserProfileFragment", "Failed to get profile data")
+            }
         }
 
     }

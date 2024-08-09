@@ -18,6 +18,7 @@ import com.example.readme.ui.community.CommunityFragment
 import com.example.readme.ui.home.HomeFragment
 import com.example.readme.ui.mypage.MyPageFragment
 import com.example.readme.ui.mypage.SettingFragment
+import com.example.readme.ui.profile.UserProfileFragment
 import com.example.readme.ui.search.SearchFragment
 class MainActivity : AppCompatActivity() {
 
@@ -61,7 +62,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home -> HomeFragment()
                 R.id.navigation_search -> SearchFragment()
                 R.id.navigation_community -> CommunityFragment()
-                R.id.navigation_mypage -> MyPageFragment()
+                //R.id.navigation_mypage -> MyPageFragment()
+                R.id.navigation_mypage -> UserProfileFragment()
                 else -> null
             }
             selectedFragment?.let {
