@@ -39,7 +39,7 @@ class UserProfileViewModel(private val userId: Int, private val apiService: Read
 
 
     // 프로필 정보를 가져오는 함수
-    fun getProfile(): MutableLiveData<ProfileResponse> {
+    fun fetchProfile(): MutableLiveData<ProfileResponse> {
         viewModelScope.launch {
             try {
                 // Retrofit의 API 호출

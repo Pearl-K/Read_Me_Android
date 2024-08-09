@@ -52,7 +52,7 @@ class UserProfileFragment : BaseFragment<FragmentUserprofileBinding>(R.layout.fr
         }.attach()
 
         // 프로필 정보 가져오기
-        viewModel.getProfile().observe(viewLifecycleOwner) { profileResponse ->
+        viewModel.fetchProfile().observe(viewLifecycleOwner) { profileResponse ->
             if (profileResponse != null) {
                 // 정상적인 응답 처리
                 profileResponse?.let {
