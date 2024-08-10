@@ -78,35 +78,43 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun ShowInit(){
+        binding.toolbar.visibility = View.VISIBLE
         binding.mainLogo.visibility = View.VISIBLE
         binding.btnFilter.visibility = View.VISIBLE
         binding.btnSetting.visibility = View.GONE
         binding.btnBack.visibility = View.GONE
     }
 
-
     fun ShowHome(){
+        binding.toolbar.visibility = View.VISIBLE
         binding.mainLogo.visibility = View.VISIBLE
         binding.btnFilter.visibility = View.VISIBLE
         binding.btnSetting.visibility = View.GONE
         binding.btnBack.visibility = View.GONE
-        binding.search.visibility = View.GONE
     }
 
     fun ShowSearch(){
+        binding.toolbar.visibility = View.GONE
         binding.mainLogo.visibility = View.GONE
         binding.btnFilter.visibility = View.GONE
         binding.btnSetting.visibility = View.GONE
         binding.btnBack.visibility = View.GONE
-        binding.search.visibility = View.VISIBLE
+    }
+
+    fun ShowCommunity() {
+        binding.toolbar.visibility = View.VISIBLE
+        binding.mainLogo.visibility = View.VISIBLE
+        binding.btnFilter.visibility = View.GONE
+        binding.btnSetting.visibility = View.GONE
+        binding.btnBack.visibility = View.GONE
     }
 
     fun ShowMyPage(){
+        binding.toolbar.visibility = View.VISIBLE
         binding.mainLogo.visibility = View.VISIBLE
         binding.btnFilter.visibility = View.GONE
         binding.btnSetting.visibility = View.VISIBLE
         binding.btnBack.visibility = View.GONE
-        binding.search.visibility = View.GONE
     }
 
 
