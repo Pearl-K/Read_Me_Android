@@ -1,7 +1,6 @@
 package com.example.readme.ui.profile
 
 import android.util.Log
-import androidx.databinding.BindingAdapter
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.readme.R
@@ -9,17 +8,15 @@ import com.example.readme.databinding.FragmentUserprofileBinding
 import com.example.readme.data.remote.ReadmeServerService
 import com.example.readme.ui.MainActivity
 import com.example.readme.ui.base.BaseFragment
-import com.example.readme.ui.mypage.ViewPagerAdapter
 import com.example.readme.utils.RetrofitClient
 import com.google.android.material.tabs.TabLayoutMediator
-import androidx.lifecycle.observe
 
 
 class UserProfileFragment : BaseFragment<FragmentUserprofileBinding>(R.layout.fragment_userprofile) {
 
     private val userId: Int = 3 // 테스트용
     private val apiService: ReadmeServerService by lazy {
-        RetrofitClient.apiService
+        RetrofitClient.getReadmeServerService()
     }
     private val viewModel: UserProfileViewModel by viewModels {
         UserProfileViewModelFactory(userId, apiService)
@@ -40,7 +37,7 @@ class UserProfileFragment : BaseFragment<FragmentUserprofileBinding>(R.layout.fr
         super.initAfterBinding()
 
         // ViewPager2와 TabLayoutMediator 설정
-        val adapter = ViewPagerAdapter(this)
+        val adapter = UserProfileViewPagerAdapter(this)
         binding.viewPager.adapter = adapter
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
@@ -63,7 +60,7 @@ class UserProfileFragment : BaseFragment<FragmentUserprofileBinding>(R.layout.fr
                     // 프로필 정보를 UI에 업데이트
                     binding.profileName.text = it.result.nickname
                     binding.profileId.text = "@${it.result.account}"
-                    binding.profileBio.text = it.result.comment ?: "No bio available"
+                    binding.profileBio.text = it.result.comment ?: ""
                     binding.followersCount.text = "${it.result.followerNum}"
                     binding.followingCount.text = "${it.result.followingNum}"
 

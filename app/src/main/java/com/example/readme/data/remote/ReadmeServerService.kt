@@ -33,11 +33,20 @@ interface ReadmeServerService {
         @Path("userId") userId: Int
     ): ProfileResponse
 
-
     @GET("/users/{userId}/shorts")
     suspend fun getShorts(
-        @Path("userId") userId: String
+        @Path("userId") userId: Int
     ): ProfileShortsResponse
+
+    @GET("/users/{userId}/likes")
+    suspend fun getLikes(
+        @Path("userId") userId: Int
+    ): ProfileShortsResponse
+
+    @GET("/users/{userId}/books")
+    suspend fun getBooks(
+        @Path("userId") userId: Int
+    ): ProfileBooksResponse
 
     @POST("communities/{communityId}/messages")
     fun postMessage(@Path("communityId") communityId: String, @Body chat: Chat): Call<Chat>

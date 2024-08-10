@@ -8,20 +8,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-    private var aladdinRetrofit: Retrofit? = null
     private var kakaoRetrofit: Retrofit? = null
     private var ReadmeRetrofit: Retrofit? = null
-
-    // 알라딘 API Retrofit 객체 생성
-    fun getAladdinService(): AladdinService {
-        if (aladdinRetrofit == null) {
-            aladdinRetrofit = Retrofit.Builder()
-                .baseUrl(AladdinService.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-        }
-        return aladdinRetrofit!!.create(AladdinService::class.java)
-    }
 
     // 카카오톡 로그인 API Retrofit 객체 생성
     fun getKakaoLoginService(): KakaoLoginService {

@@ -80,8 +80,8 @@
          android:layout_height="38dp"
          android:layout_margin="5dp"
          android:background="@drawable/toggle_button_selector"
-         android:textOff="📚소설"
-         android:textOn="📚소설"
+         android:textOff="소설"
+         android:textOn="소설"
          android:textSize="18sp"/>
 
      <ToggleButton
@@ -90,8 +90,8 @@
          android:layout_height="38dp"
          android:layout_margin="5dp"
          android:background="@drawable/toggle_button_selector"
-         android:textOff="🔖시"
-         android:textOn="🔖시"
+         android:textOff="시"
+         android:textOn="시"
          android:textSize="18sp"/>
 
      <ToggleButton
@@ -100,8 +100,8 @@
          android:layout_height="38dp"
          android:layout_margin="5dp"
          android:background="@drawable/toggle_button_selector"
-         android:textOff="📝에세이"
-         android:textOn="📝에세이"
+         android:textOff="에세이"
+         android:textOn="에세이"
          android:textSize="18sp"/>
 </LinearLayout>
 
@@ -120,8 +120,8 @@
               android:layout_height="38dp"
               android:layout_margin="5dp"
               android:background="@drawable/toggle_button_selector"
-              android:textOff="📔인문학"
-              android:textOn="📔인문학"
+              android:textOff="인문학"
+              android:textOn="인문학"
               android:textSize="18sp"/>
 
           <ToggleButton
@@ -130,8 +130,8 @@
               android:layout_height="38dp"
               android:layout_margin="5dp"
               android:background="@drawable/toggle_button_selector"
-              android:textOff="🏡가정/육아"
-              android:textOn="🏡가정/육아"
+              android:textOff="가정/육아"
+              android:textOn="가정/육아"
               android:textSize="18sp"/>
 
 
@@ -151,8 +151,8 @@
               android:layout_height="38dp"
               android:layout_margin="5dp"
               android:background="@drawable/toggle_button_selector"
-              android:textOff="🤸건강/운동"
-              android:textOn="🤸건강/운동"
+              android:textOff="건강/운동"
+              android:textOn="건강/운동"
               android:textSize="18sp"/>
 
           <ToggleButton
@@ -161,8 +161,8 @@
               android:layout_height="38dp"
               android:layout_margin="5dp"
               android:background="@drawable/toggle_button_selector"
-              android:textOff="🧶취미"
-              android:textOn="🧶취미"
+              android:textOff="취미"
+              android:textOn="취미"
               android:textSize="18sp"/>
 
 
@@ -182,8 +182,8 @@
               android:layout_height="38dp"
               android:layout_margin="5dp"
               android:background="@drawable/toggle_button_selector"
-              android:textOff="💡자기계발"
-              android:textOn="💡자기계발"
+              android:textOff="자기계발"
+              android:textOn="자기계발"
               android:textSize="18sp"/>
 
           <ToggleButton
@@ -192,8 +192,8 @@
               android:layout_height="38dp"
               android:layout_margin="5dp"
               android:background="@drawable/toggle_button_selector"
-              android:textOff="💰경제/경영"
-              android:textOn="💰경제/경영"
+              android:textOff="경제/경영"
+              android:textOn="경제/경영"
               android:textSize="18sp"/>
 
      </LinearLayout>
@@ -212,8 +212,8 @@
               android:layout_height="38dp"
               android:layout_margin="5dp"
               android:background="@drawable/toggle_button_selector"
-              android:textOff="📰정치/사회"
-              android:textOn="📰정치/사회"
+              android:textOff="정치/사회"
+              android:textOn="정치/사회"
               android:textSize="18sp"/>
 
           <ToggleButton
@@ -222,8 +222,8 @@
               android:layout_height="38dp"
               android:layout_margin="5dp"
               android:background="@drawable/toggle_button_selector"
-              android:textOff="☄️역사"
-              android:textOn="☄️역사"
+              android:textOff="️역사"
+              android:textOn="️역사"
               android:textSize="18sp"/>
 
           <ToggleButton
@@ -232,8 +232,8 @@
               android:layout_height="38dp"
               android:layout_margin="5dp"
               android:background="@drawable/toggle_button_selector"
-              android:textOff="🏛️종교"
-              android:textOn="🏛️종교"
+              android:textOff="종교"
+              android:textOn="종교"
               android:textSize="18sp"/>
 
 
@@ -253,8 +253,8 @@
               android:layout_height="38dp"
               android:layout_margin="5dp"
               android:background="@drawable/toggle_button_selector"
-              android:textOff="🎥예술/문화"
-              android:textOn="🎥예술/문화"
+              android:textOff="예술/문화"
+              android:textOn="예술/문화"
               android:textSize="18sp"/>
 
           <ToggleButton
@@ -263,8 +263,8 @@
               android:layout_height="38dp"
               android:layout_margin="5dp"
               android:background="@drawable/toggle_button_selector"
-              android:textOff="🧪과학"
-              android:textOn="🧪과학"
+              android:textOff="과학"
+              android:textOn="과학"
               android:textSize="18sp"/>
 
 
@@ -287,8 +287,8 @@
               android:layout_height="38dp"
               android:layout_margin="5dp"
               android:background="@drawable/toggle_button_selector"
-              android:textOff="💻컴퓨터/IT"
-              android:textOn="💻컴퓨터/IT"
+              android:textOff="컴퓨터/IT"
+              android:textOn="컴퓨터/IT"
               android:textSize="18sp"/>
 
           <ToggleButton
@@ -297,8 +297,8 @@
               android:layout_height="38dp"
               android:layout_margin="5dp"
               android:background="@drawable/toggle_button_selector"
-              android:textOff="🗣️교육/외국어"
-              android:textOn="🗣️교육/외국어"
+              android:textOff="교육/외국어"
+              android:textOn="교육/외국어"
               android:textSize="18sp"/>
 
 
@@ -320,8 +320,8 @@
               android:layout_height="38dp"
               android:layout_margin="5dp"
               android:background="@drawable/toggle_button_selector"
-              android:textOff="✈️여행"
-              android:textOn="✈️여행"
+              android:textOff="여행"
+              android:textOn="여행"
               android:textSize="18sp"/>
 
           <ToggleButton
@@ -330,8 +330,8 @@
               android:layout_height="38dp"
               android:layout_margin="5dp"
               android:background="@drawable/toggle_button_selector"
-              android:textOff="📱웹소설"
-              android:textOn="📱웹소설"
+              android:textOff="웹소설"
+              android:textOn="웹소설"
               android:textSize="18sp"/>
 
 
