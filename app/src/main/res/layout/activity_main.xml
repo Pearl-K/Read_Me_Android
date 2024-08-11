@@ -43,6 +43,8 @@ xmlns:tools="http://schemas.android.com/tools">
             android:textSize="35sp"
             android:textColor="@color/Primary"
             android:textStyle="bold"
+            android:fontFamily="@font/font_robotoslab_extrabold"
+
             android:visibility="visible" />
 
         <androidx.appcompat.widget.AppCompatImageView

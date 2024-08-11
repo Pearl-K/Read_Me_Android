@@ -3,6 +3,8 @@ package com.example.readme.ui.profile
 import android.util.Log
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.request.RequestOptions
 import com.example.readme.R
 import com.example.readme.databinding.FragmentUserprofileBinding
 import com.example.readme.data.remote.ReadmeServerService
@@ -53,8 +55,6 @@ class UserProfileFragment : BaseFragment<FragmentUserprofileBinding>(R.layout.fr
             if (profileResponse != null) {
                 // 정상적인 응답 처리
                 profileResponse?.let {
-
-                    // 서버 응답 로그에 출력
                     Log.d("UserProfileFragment", "Profile Response: $profileResponse")
 
                     // 프로필 정보를 UI에 업데이트
@@ -64,9 +64,10 @@ class UserProfileFragment : BaseFragment<FragmentUserprofileBinding>(R.layout.fr
                     binding.followersCount.text = "${it.result.followerNum}"
                     binding.followingCount.text = "${it.result.followingNum}"
 
-                    // 이미지 로딩은 Glide 또는 Picasso 등을 사용해 비동기로 처리
+                    // 이미지 로딩 Glide : 비동기로 처리
                     Glide.with(this)
                         .load(it.result.profileImg)
+                        .transform(CircleCrop()) // CircleCrop으로 원형 자르기
                         .into(binding.profileImage)
                 }
             } else {
