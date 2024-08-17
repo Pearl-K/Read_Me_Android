@@ -22,7 +22,7 @@ interface ReadmeServerService {
     @GET("/users/my")
     suspend fun getMyProfile(
         @Header("Authorization") token: String
-    ): Call<ProfileResponse>
+    ): MyPageResponse
 
     @GET("/users/my/shorts")
     suspend fun getMyShorts(): ProfileShortsResponse

@@ -1,10 +1,12 @@
 package com.example.readme.ui.mypage
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import com.example.readme.data.remote.MyPageResponse
 import com.example.readme.data.remote.ReadmeServerService
 import com.example.readme.utils.RetrofitClient.apiService
 import kotlinx.coroutines.Dispatchers
@@ -12,29 +14,32 @@ import kotlinx.coroutines.launch
 
 class MyPageViewModel(private val token: String, private val apiService: ReadmeServerService) : ViewModel() {
 
-    private val _profileName = MutableLiveData("Username")
-    val profileName: LiveData<String> get() = _profileName
+    private val _myPage = MutableLiveData<MyPageResponse>()
+    val myPage: LiveData<MyPageResponse> get() = _myPage
 
-    private val _profileId = MutableLiveData("@testUserId")
-    val profileId: LiveData<String> get() = _profileId
+    // MyPage 정보를 가져오는 함수
+    fun fetchMyPage(): LiveData<MyPageResponse> {
+        viewModelScope.launch {
+            try {
+                // API 호출 시 토큰을 헤더에 추가
+                val response = apiService.getMyProfile("Bearer $token")
 
-    private val _profileBio = MutableLiveData("This is the bio")
-    val profileBio: LiveData<String> get() = _profileBio
+                if (response.isSuccess) {
+                    val myPageResponse = response
 
-    private val _readCount = MutableLiveData(17)
-    val readCount: LiveData<Int> get() = _readCount
-
-    private val _followersCount = MutableLiveData(700)
-    val followersCount: LiveData<Int> get() = _followersCount
-
-    private val _followingCount = MutableLiveData(777)
-    val followingCount: LiveData<Int> get() = _followingCount
-
-    private val _profileImg = MutableLiveData<String>()
-    val profileImg: LiveData<String> get() = _profileImg
-
-    fun getMyProfile(token: String) = liveData(Dispatchers.IO) {
-        val response = apiService.getMyProfile("Bearer $token")
-        emit(response)
+                    // myPageResponse가 null이 아닌 경우에만 처리
+                    myPageResponse?.let {
+                        _myPage.postValue(it)
+                    } ?: run {
+                        Log.e("MyPageViewModel", "MyPage response body is null")
+                    }
+                } else {
+                    Log.e("MyPageViewModel_fetchMyPage", "Error: ${response.code} - ${response.message}")
+                }
+            } catch (e: Exception) {
+                Log.e("MyPageViewModel_fetchMyPage", "Exception: ${e.message}")
+            }
+        }
+        return myPage
     }
 }

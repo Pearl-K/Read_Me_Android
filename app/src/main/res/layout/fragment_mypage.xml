@@ -36,7 +36,7 @@
             android:id="@+id/profile_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.profileName}"
+            android:text="@{viewModel.myPage.result.nickname}"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginStart="20dp"
@@ -51,7 +51,7 @@
             android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profile_name"
-            android:text="@{'@' + viewModel.profileId}"
+            android:text="@{'@' + viewModel.myPage.result.account}"
             android:textSize="16sp" />
 
         <TextView
@@ -63,7 +63,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profile_id"
-            android:text="@{'@'+viewModel.profileBio}"
+            android:text="@{viewModel.myPage.result.comment}"
             android:lines="2"
             android:textSize="16sp" />
 
@@ -94,7 +94,7 @@
                         android:id="@+id/read_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{String.valueOf(viewModel.readCount)}"
+                        android:text="@{String.valueOf(viewModel.myPage.result.readCount)}"
                         android:textSize="20sp"
                         android:textStyle="bold"/>
 
@@ -119,7 +119,7 @@
                         android:id="@+id/followers_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{String.valueOf(viewModel.followersCount)}"
+                        android:text="@{String.valueOf(viewModel.myPage.result.followerNum)}"
                         android:textSize="20sp"
                         android:textStyle="bold"/>
 
@@ -143,7 +143,7 @@
                         android:id="@+id/following_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{String.valueOf(viewModel.followingCount)}"
+                        android:text="@{String.valueOf(viewModel.myPage.result.followingNum)}"
                         android:textSize="20sp"
                         android:textStyle="bold"/>
 

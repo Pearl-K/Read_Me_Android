@@ -1,9 +1,12 @@
 package com.example.readme.ui.mypage
 
 import MyPageViewModelFactory
+import android.util.Log
 import com.example.readme.R
 import com.example.readme.databinding.FragmentMypageBinding
 import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.example.readme.data.remote.ReadmeServerService
 import com.example.readme.ui.MainActivity
 import com.example.readme.utils.RetrofitClient
@@ -14,9 +17,9 @@ class MyPageFragment : BaseFragment<FragmentMypageBinding>(R.layout.fragment_myp
 
     private val information = arrayListOf("내 쇼츠", "찜 쇼츠", "읽은 책")
 
-    private val token: String = "your_access_token" // 실제 토큰으로 대체
+    private val token = "example_token_here" //실제 토큰 필요
     private val apiService: ReadmeServerService by lazy {
-        RetrofitClient.apiService
+        RetrofitClient.getReadmeServerService()
     }
     private val viewModel: MyPageViewModel by viewModels {
         MyPageViewModelFactory(token, apiService)
@@ -31,6 +34,31 @@ class MyPageFragment : BaseFragment<FragmentMypageBinding>(R.layout.fragment_myp
         super.initDataBinding()
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        // 프로필 정보 가져오기
+        viewModel.fetchMyPage().observe(viewLifecycleOwner) { MyPageResponse ->
+            if (MyPageResponse != null) {
+                // 정상적인 응답 처리
+                MyPageResponse?.let {
+                    Log.d("UserProfileFragment", "MyPage Response: $MyPageResponse")
+
+                    // 프로필 정보를 UI에 업데이트
+                    binding.profileName.text = it.result.nickname
+                    binding.profileId.text = "@${it.result.account}"
+                    binding.profileBio.text = it.result.comment ?: ""
+                    binding.followersCount.text = "${it.result.followerNum}"
+                    binding.followingCount.text = "${it.result.followingNum}"
+
+                    // 이미지 로딩 Glide : 비동기로 처리
+                    Glide.with(this)
+                        .load(it.result.profileImg)
+                        .transform(CircleCrop()) // CircleCrop으로 원형 자르기
+                        .into(binding.profileImage)
+                }
+            } else {
+                Log.e("UserProfileFragment", "Failed to get profile data")
+            }
+        }
     }
 
     override fun initAfterBinding() {
@@ -48,34 +76,5 @@ class MyPageFragment : BaseFragment<FragmentMypageBinding>(R.layout.fragment_myp
             }
         }.attach()
 
-        // 프로필 정보 가져오기
-        viewModel.getMyProfile(token).observe(viewLifecycleOwner) { profileResponse ->
-            // 프로필 정보를 UI에 업데이트하기
-        }
-
-
     }
-
-    // 이전 방식
-    /*override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        // 여기서 super.onCreateView 호출로 _binding을 설정
-        val view = super.onCreateView(inflater, container, savedInstanceState)
-
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
-
-        val adapter = ViewPagerAdapter(this)
-        binding.viewPager.adapter = adapter
-
-        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-            tab.text = information[position]
-        }.attach()
-
-        return binding.root
-    }*/
-
 }
