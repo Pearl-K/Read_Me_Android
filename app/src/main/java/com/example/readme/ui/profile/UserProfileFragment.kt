@@ -33,22 +33,6 @@ class UserProfileFragment : BaseFragment<FragmentUserprofileBinding>(R.layout.fr
         super.initDataBinding()
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-    }
-
-    override fun initAfterBinding() {
-        super.initAfterBinding()
-
-        // ViewPager2와 TabLayoutMediator 설정
-        val adapter = UserProfileViewPagerAdapter(this)
-        binding.viewPager.adapter = adapter
-
-        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-            when(position){
-                0 -> { tab.setIcon(R.drawable.ic_tab_shorts) }
-                1 -> { tab.setIcon(R.drawable.ic_tab_likes) }
-                2 -> { tab.setIcon(R.drawable.ic_tab_books) }
-            }
-        }.attach()
 
         // 프로필 정보 가져오기
         viewModel.fetchProfile().observe(viewLifecycleOwner) { profileResponse ->
@@ -74,6 +58,22 @@ class UserProfileFragment : BaseFragment<FragmentUserprofileBinding>(R.layout.fr
                 Log.e("UserProfileFragment", "Failed to get profile data")
             }
         }
+    }
+
+    override fun initAfterBinding() {
+        super.initAfterBinding()
+
+        // ViewPager2와 TabLayoutMediator 설정
+        val adapter = UserProfileViewPagerAdapter(this)
+        binding.viewPager.adapter = adapter
+
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            when(position){
+                0 -> { tab.setIcon(R.drawable.ic_tab_shorts) }
+                1 -> { tab.setIcon(R.drawable.ic_tab_likes) }
+                2 -> { tab.setIcon(R.drawable.ic_tab_books) }
+            }
+        }.attach()
 
     }
 

@@ -20,7 +20,7 @@ class UserProfileViewModel(private val userId: Int, private val apiService: Read
 
 
     // 프로필 정보를 가져오는 함수
-    fun fetchProfile(): MutableLiveData<ProfileResponse> {
+    fun fetchProfile(): LiveData<ProfileResponse> {
         viewModelScope.launch {
             try {
                 val response = apiService.getProfile(userId)
@@ -42,6 +42,6 @@ class UserProfileViewModel(private val userId: Int, private val apiService: Read
                 Log.e("UserProfileViewModel_fetch_profile", "Exception: ${e.message}")
             }
         }
-        return _profile
+        return profile
     }
 }
