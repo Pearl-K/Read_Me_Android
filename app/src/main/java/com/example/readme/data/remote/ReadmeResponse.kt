@@ -15,3 +15,10 @@ data class ReadmeResponse(
     val isSuccess: Boolean,
     val message: String
 )
+
+data class BasicResponse(
+    val isSuccess: Boolean,
+    val code: String,
+    val message: String
+)
+

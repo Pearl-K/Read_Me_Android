@@ -1,14 +1,13 @@
-package com.example.readme.ui.profile
+package com.example.readme.ui.mypage
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.readme.R
 import com.example.readme.data.entities.ShortsItem
 import com.example.readme.databinding.ItemShortsCardBinding
 
-class UserShortsAdapter(private val shortsList: List<ShortsItem>) : RecyclerView.Adapter<UserShortsAdapter.ShortsViewHolder>() {
+class MyShortsAdapter (private val shortsList: List<ShortsItem>) : RecyclerView.Adapter<MyShortsAdapter.ShortsViewHolder>() {
 
     inner class ShortsViewHolder(private val binding: ItemShortsCardBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(shorts: ShortsItem) {
