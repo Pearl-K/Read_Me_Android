@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.example.readme.data.remote.MyPageResponse
+import com.example.readme.data.remote.ProfileUpdateRequest
 import com.example.readme.data.remote.ReadmeServerService
 import com.example.readme.utils.RetrofitClient.apiService
 import kotlinx.coroutines.Dispatchers
@@ -41,5 +42,35 @@ class MyPageViewModel(private val token: String, private val apiService: ReadmeS
             }
         }
         return myPage
+    }
+
+    // 프로필 업데이트 함수
+    fun updateProfile(nickname: String?, account: String?, comment: String?) {
+        val profileUpdateRequest = ProfileUpdateRequest(
+            nickname = nickname,
+            account = account,
+            comment = comment
+        )
+
+        viewModelScope.launch {
+            try {
+                val response = apiService.updateMyProfile("Bearer $token", profileUpdateRequest)
+
+                if (response.isSuccess) {
+                    // 성공적으로 업데이트된 경우
+                    val updatedProfile = response
+
+                    // myPageResponse가 null이 아닌 경우에만 처리
+                    updatedProfile?.let {
+                        _myPage.postValue(it)
+                    }
+                } else {
+                    // error
+                    Log.e("MyPageViewModel", "Error: ${response.code} - ${response.message}")
+                }
+            } catch (e: Exception) {
+                Log.e("MyPageViewModel_updateMyPage", "Exception: ${e.message}")
+            }
+        }
     }
 }

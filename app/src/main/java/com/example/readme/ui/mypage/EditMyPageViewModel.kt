@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.readme.data.remote.ProfileUpdateRequest
 import kotlinx.coroutines.launch
 
 class EditMyPageViewModel(application: Application) : AndroidViewModel(application) {
@@ -42,6 +43,14 @@ class EditMyPageViewModel(application: Application) : AndroidViewModel(applicati
 
     fun setProfileImg(img: String) {
         _profileImg.value = img
+    }
+
+    fun getProfileUpdateRequest(): ProfileUpdateRequest {
+        return ProfileUpdateRequest(
+            nickname = _profileName.value,
+            account = _profileAccount.value,
+            comment = _profileBio.value
+        )
     }
 
     fun saveProfileChanges() {

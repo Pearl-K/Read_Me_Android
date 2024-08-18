@@ -1,6 +1,7 @@
 package com.example.readme.ui.mypage
 
 import MyPageViewModelFactory
+import android.content.Intent
 import android.util.Log
 import com.example.readme.R
 import com.example.readme.databinding.FragmentMypageBinding
@@ -75,6 +76,29 @@ class MyPageFragment : BaseFragment<FragmentMypageBinding>(R.layout.fragment_myp
                 2 -> { tab.setIcon(R.drawable.ic_tab_books) }
             }
         }.attach()
+
+        // 프로필 편집 버튼 클릭 리스너
+        binding.btnPfEdit.setOnClickListener {
+
+            // 프로필 편집 기능 실행
+            val intent = Intent(context, EditMyPageFragment::class.java)
+            startActivity(intent)
+        }
+
+        // 프로필 공유 버튼 클릭 리스너
+        binding.btnPfShare.setOnClickListener {
+
+            /*// 프로필 링크 생성
+            val profileLink = "https://yourapp.com/profile/${viewModel.userId}" // 실제 앱의 프로필 링크로 수정
+
+            // 클립보드에 링크 복사
+            val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText("Profile Link", profileLink)
+            clipboard.setPrimaryClip(clip)
+
+            // 사용자에게 링크 복사 완료 알림
+            Toast.makeText(requireContext(), "프로필 링크가 복사되었습니다.", Toast.LENGTH_SHORT).show()*/
+        }
 
     }
 }

@@ -17,6 +17,8 @@ class EditMyPageFragment : Fragment(R.layout.fragment_edit_mypage) {
 
     private lateinit var binding: FragmentEditMypageBinding
 
+    private val token = "example_token" //실제 토큰 저장
+
     private val viewModel: EditMyPageViewModel by viewModels {
         EditMyPageViewModelFactory(requireActivity().application)
     }
@@ -42,7 +44,7 @@ class EditMyPageFragment : Fragment(R.layout.fragment_edit_mypage) {
         // MyPage API 수정 후 적용
 
         myPageViewModel.myPage.observe(viewLifecycleOwner) { it ->
-            viewModel.setProfileName(it.result.email)
+            viewModel.setProfileEmail(it.result.email)
         }
         myPageViewModel.myPage.observe(viewLifecycleOwner) { it ->
             viewModel.setProfileName(it.result.nickname)
@@ -74,11 +76,18 @@ class EditMyPageFragment : Fragment(R.layout.fragment_edit_mypage) {
     private fun saveProfileChanges() {
         lifecycleScope.launch {
             try {
-                // API 호출을 통한 프로필 저장 로직 (수정한 내용을 저장하는 곳임!!)
-                // val response = apiService.updateProfile(viewModel.getProfileData())
-                // 성공 처리
-                Log.d("EditMyPageFragment", "Profile updated successfully")
-                requireActivity().onBackPressed()
+                // API 호출을 통한 프로필 저장 로직 (수정한 내용을 저장하는 곳!!)
+                val profileUpdateRequest = viewModel.getProfileUpdateRequest()
+
+                val response = apiService.updateMyProfile(token, profileUpdateRequest)
+
+                if (response.isSuccess) {
+                    Log.d("EditMyPageFragment", "Profile updated successfully")
+                    requireActivity().onBackPressed()
+                } else {
+                    Log.e("EditMyPageFragment", "Error updating profile: ${response.message}")
+                }
+
             } catch (e: Exception) {
                 // 오류 처리
                 Log.e("EditMyPageFragment", "Error updating profile", e)
