@@ -157,18 +157,17 @@
             </LinearLayout>
 
         <!-- 이 사이에 프로필 관련 버튼 2개 들어가야 함 -->
-        <Button
+        <ImageButton
             android:id="@+id/btn_pf_edit"
             android:layout_width="150dp"
             android:layout_height="42dp"
-            android:layout_marginStart="35dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/btn_pf_edit"
-            android:backgroundTint="@color/Black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profile_bio" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_pf_share"
             android:layout_width="150dp"
             android:layout_height="42dp"
