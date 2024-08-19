@@ -18,6 +18,7 @@ import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
+import com.kakao.sdk.common.util.Utility
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -64,6 +65,10 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // 키 해시 값을 로그로 출력
+        val keyHash = Utility.getKeyHash(this)
+        Log.d("KeyHash", keyHash)
 
         KakaoSdk.init(this, "8bd1ca39d5eb15687ae52deb301f1abe")
         if (AuthApiClient.instance.hasToken()) {
