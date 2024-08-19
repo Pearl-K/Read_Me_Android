@@ -22,18 +22,13 @@ xmlns:tools="http://schemas.android.com/tools">
         app:layout_constraintTop_toTopOf="parent"
         app:titleTextColor="@color/Black">
 
-        <TextView
-            android:id="@+id/main_Logo"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/main_logo"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:src="@drawable/logo_big"
             android:layout_marginStart="20dp"
-            android:text="Read Me"
-            android:textColor="@color/Primary"
-            android:textSize="35sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/font_robotoslab_extrabold"
-
-            android:visibility="visible" />
+            android:visibility="visible"/>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/btn_setting"
